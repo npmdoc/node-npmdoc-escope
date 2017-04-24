@@ -1,0 +1,1694 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="http://github.com/estools/escope">escope (v3.6.0)</a>
+</h1>
+<h4>ECMAScript scope analyzer</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.escope">module escope</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.Reference">
+            function <span class="apidocSignatureSpan">escope.</span>Reference
+            <span class="apidocSignatureSpan">(ident, scope, flag, writeExpr, maybeImplicitGlobal, partial, init)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.Scope">
+            function <span class="apidocSignatureSpan">escope.</span>Scope
+            <span class="apidocSignatureSpan">(scopeManager, type, upperScope, block, isMethodDefinition)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.ScopeManager">
+            function <span class="apidocSignatureSpan">escope.</span>ScopeManager
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.Variable">
+            function <span class="apidocSignatureSpan">escope.</span>Variable
+            <span class="apidocSignatureSpan">(name, scope)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.analyze">
+            function <span class="apidocSignatureSpan">escope.</span>analyze
+            <span class="apidocSignatureSpan">(tree, providedOptions)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">escope.</span>definition</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">escope.</span>pattern_visitor</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">escope.</span>reference</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">escope.</span>referencer</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">escope.</span>scope</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">escope.</span>scope_manager</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">escope.</span>variable</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">escope.</span>version</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.escope.definition">module escope.definition</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.definition.Definition">
+            function <span class="apidocSignatureSpan">escope.definition.</span>Definition
+            <span class="apidocSignatureSpan">(type, name, node, parent, index, kind)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.definition.ParameterDefinition">
+            function <span class="apidocSignatureSpan">escope.definition.</span>ParameterDefinition
+            <span class="apidocSignatureSpan">(name, node, index, rest)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.definition.default">
+            function <span class="apidocSignatureSpan">escope.definition.</span>default
+            <span class="apidocSignatureSpan">(type, name, node, parent, index, kind)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.escope.pattern_visitor">module escope.pattern_visitor</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.pattern_visitor.default">
+            function <span class="apidocSignatureSpan">escope.pattern_visitor.</span>default
+            <span class="apidocSignatureSpan">(options, rootPattern, callback)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.escope.reference">module escope.reference</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.reference.default">
+            function <span class="apidocSignatureSpan">escope.reference.</span>default
+            <span class="apidocSignatureSpan">(ident, scope, flag, writeExpr, maybeImplicitGlobal, partial, init)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.escope.referencer">module escope.referencer</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.referencer.default">
+            function <span class="apidocSignatureSpan">escope.referencer.</span>default
+            <span class="apidocSignatureSpan">(options, scopeManager)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.escope.scope">module escope.scope</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.scope.BlockScope">
+            function <span class="apidocSignatureSpan">escope.scope.</span>BlockScope
+            <span class="apidocSignatureSpan">(scopeManager, upperScope, block)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.scope.CatchScope">
+            function <span class="apidocSignatureSpan">escope.scope.</span>CatchScope
+            <span class="apidocSignatureSpan">(scopeManager, upperScope, block)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.scope.ClassScope">
+            function <span class="apidocSignatureSpan">escope.scope.</span>ClassScope
+            <span class="apidocSignatureSpan">(scopeManager, upperScope, block)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.scope.ForScope">
+            function <span class="apidocSignatureSpan">escope.scope.</span>ForScope
+            <span class="apidocSignatureSpan">(scopeManager, upperScope, block)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.scope.FunctionExpressionNameScope">
+            function <span class="apidocSignatureSpan">escope.scope.</span>FunctionExpressionNameScope
+            <span class="apidocSignatureSpan">(scopeManager, upperScope, block)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.scope.FunctionScope">
+            function <span class="apidocSignatureSpan">escope.scope.</span>FunctionScope
+            <span class="apidocSignatureSpan">(scopeManager, upperScope, block, isMethodDefinition)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.scope.GlobalScope">
+            function <span class="apidocSignatureSpan">escope.scope.</span>GlobalScope
+            <span class="apidocSignatureSpan">(scopeManager, block)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.scope.ModuleScope">
+            function <span class="apidocSignatureSpan">escope.scope.</span>ModuleScope
+            <span class="apidocSignatureSpan">(scopeManager, upperScope, block)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.scope.SwitchScope">
+            function <span class="apidocSignatureSpan">escope.scope.</span>SwitchScope
+            <span class="apidocSignatureSpan">(scopeManager, upperScope, block)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.scope.TDZScope">
+            function <span class="apidocSignatureSpan">escope.scope.</span>TDZScope
+            <span class="apidocSignatureSpan">(scopeManager, upperScope, block)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.scope.WithScope">
+            function <span class="apidocSignatureSpan">escope.scope.</span>WithScope
+            <span class="apidocSignatureSpan">(scopeManager, upperScope, block)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.scope.default">
+            function <span class="apidocSignatureSpan">escope.scope.</span>default
+            <span class="apidocSignatureSpan">(scopeManager, type, upperScope, block, isMethodDefinition)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.escope.scope_manager">module escope.scope_manager</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.scope_manager.default">
+            function <span class="apidocSignatureSpan">escope.scope_manager.</span>default
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.escope.variable">module escope.variable</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.escope.variable.default">
+            function <span class="apidocSignatureSpan">escope.variable.</span>default
+            <span class="apidocSignatureSpan">(name, scope)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.escope" id="apidoc.module.escope">module escope</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.escope.Reference" id="apidoc.element.escope.Reference">
+        function <span class="apidocSignatureSpan">escope.</span>Reference
+        <span class="apidocSignatureSpan">(ident, scope, flag, writeExpr, maybeImplicitGlobal, partial, init)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Reference(ident, scope, flag, writeExpr, maybeImplicitGlobal, partial, init) {
+  _classCallCheck(this, Reference);
+
+<span class="apidocCodeCommentSpan">  /**
+   * Identifier syntax node.
+   * @member {esprima#Identifier} Reference#identifier
+   */
+</span>  this.identifier = ident;
+  /**
+   * Reference to the enclosing Scope.
+   * @member {Scope} Reference#from
+   */
+  this.from = scope;
+  /**
+   * Whether the reference comes from a dynamic scope (such as 'eval',
+   * 'with', etc.), and may be trapped by dynamic scopes.
+   * @member {boolean} Reference#tainted
+   */
+  this.tainted = false;
+  /**
+   * The variable this reference is resolved with.
+   * @member {Variable} Reference#resolved
+   */
+  this.resolved = null;
+  /**
+   * The read-write mode of the reference. (Value is one of {@link
+   * Reference.READ}, {@link Reference.RW}, {@link Reference.WRITE}).
+   * @member {number} Reference#flag
+   * @private
+   */
+  this.flag = flag;
+  if (this.isWrite()) {
+    /**
+     * If reference is writeable, this is the tree being written to it.
+     * @member {esprima#Node} Reference#writeExpr
+     */
+    this.writeExpr = writeExpr;
+    /**
+     * Whether the Reference might refer to a partial value of writeExpr.
+     * @member {boolean} Reference#partial
+     */
+    this.partial = partial;
+    /**
+     * Whether the Reference is to write of initialization.
+     * @member {boolean} Reference#init
+     */
+    this.init = init;
+  }
+  this.__maybeImplicitGlobal = maybeImplicitGlobal;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.escope.Scope" id="apidoc.element.escope.Scope">
+        function <span class="apidocSignatureSpan">escope.</span>Scope
+        <span class="apidocSignatureSpan">(scopeManager, type, upperScope, block, isMethodDefinition)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Scope(scopeManager, type, upperScope, block, isMethodDefinition) {
+    _classCallCheck(this, Scope);
+
+<span class="apidocCodeCommentSpan">    /**
+     * One of 'TDZ', 'module', 'block', 'switch', 'function', 'catch', 'with', 'function', 'class', 'global'.
+     * @member {String} Scope#type
+     */
+</span>    this.type = type;
+    /**
+    * The scoped {@link Variable}s of this scope, as &lt;code&gt;{ Variable.name
+    * : Variable }&lt;/code&gt;.
+    * @member {Map} Scope#set
+    */
+    this.set = new _es6Map2.default();
+    /**
+     * The tainted variables of this scope, as &lt;code&gt;{ Variable.name :
+     * boolean }&lt;/code&gt;.
+     * @member {Map} Scope#taints */
+    this.taints = new _es6Map2.default();
+    /**
+     * Generally, through the lexical scoping of JS you can always know
+     * which variable an identifier in the source code refers to. There are
+     * a few exceptions to this rule. With 'global' and 'with' scopes you
+     * can only decide at runtime which variable a reference refers to.
+     * Moreover, if 'eval()' is used in a scope, it might introduce new
+     * bindings in this or its parent scopes.
+     * All those scopes are considered 'dynamic'.
+     * @member {boolean} Scope#dynamic
+     */
+    this.dynamic = this.type === 'global' || this.type === 'with';
+    /**
+     * A reference to the scope-defining syntax node.
+     * @member {esprima.Node} Scope#block
+     */
+    this.block = block;
+    /**
+    * The {@link Reference|references} that are not resolved with this scope.
+    * @member {Reference[]} Scope#through
+    */
+    this.through = [];
+    /**
+    * The scoped {@link Variable}s of this scope. In the case of a
+    * 'function' scope this includes the automatic argument &lt;em&gt;arguments&lt;/em&gt; as
+    * its first element, as well as all further formal arguments.
+    * @member {Variable[]} Scope#variables
+    */
+    this.variables = [];
+    /**
+    * Any variable {@link Reference|reference} found in this scope. This
+    * includes occurrences of local variables as well as variables from
+    * parent scopes (including the global scope). For local variables
+    * this also includes defining occurrences (like in a 'var' statement).
+    * In a 'function' scope this does not include the occurrences of the
+    * formal parameter in the parameter list.
+    * @member {Reference[]} Scope#references
+    */
+    this.references = [];
+
+    /**
+    * For 'global' and 'function' scopes, this is a self-reference. For
+    * other scope types this is the &lt;em&gt;variableScope&lt;/em&gt; value of the
+    * parent scope.
+    * @member {Scope} Scope#variableScope
+    */
+    this.variableScope = this.type === 'global' || this.type === 'function' || this.type === 'module' ? this : upperScope.variableScope
+;
+    /**
+    * Whether this scope is created by a FunctionExpression.
+    * @member {boolean} Scope#functionExpressionScope
+    */
+    this.functionExpressionScope = false;
+    /**
+    * Whether this is a scope that contains an 'eval()' invocation.
+    * @member {boolean} Scope#directCallToEvalScope
+    */
+    this.directCallToEvalScope = false;
+    /**
+    * @member {boolean} Scope#thisFound
+    */
+    this.thisFound = false;
+
+    this.__left = [];
+
+    /**
+    * Reference to the parent {@link Scope|scope}.
+    * @member {Scope} Scope#upper
+    */
+    this.upper = upperScope;
+    /**
+    * Whether 'use strict' is in effect in this scope.
+    * @member {boolean} Scope#isStrict
+    */
+    this.isStrict = isStrictScope(this, block, isMethodDefinition, scopeManager.__useDirective());
+
+    /**
+    * List of nested {@link Scope}s.
+    * @member {Scope[]} Scope#childScopes
+    */
+    this.childScopes = [];
+    if (this.upper) {
+        this.upper.childScopes.push(this);
+    }
+
+    this.__declaredVariables = scopeManager.__declaredVariables;
+
+    registerScope(scopeManager, this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.escope.ScopeManager" id="apidoc.element.escope.ScopeManager">
+        function <span class="apidocSignatureSpan">escope.</span>ScopeManager
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function ScopeManager(options) {
+    _classCallCheck(this, ScopeManager);
+
+    this.scopes = [];
+    this.globalScope = null;
+    this.__nodeToScope = new _es6WeakMap2.default();
+    this.__currentScope = null;
+    this.__options = options;
+    this.__declaredVariables = new _es6WeakMap2.default();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.escope.Variable" id="apidoc.element.escope.Variable">
+        function <span class="apidocSignatureSpan">escope.</span>Variable
+        <span class="apidocSignatureSpan">(name, scope)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Variable(name, scope) {
+  _classCallCheck(this, Variable);
+
+<span class="apidocCodeCommentSpan">  /**
+   * The variable name, as given in the source code.
+   * @member {String} Variable#name
+   */
+</span>  this.name = name;
+  /**
+   * List of defining occurrences of this variable (like in 'var ...'
+   * statements or as parameter), as AST nodes.
+   * @member {esprima.Identifier[]} Variable#identifiers
+   */
+  this.identifiers = [];
+  /**
+   * List of {@link Reference|references} of this variable (excluding parameter entries)
+   * in its defining scope and all nested scopes. For defining
+   * occurrences only see {@link Variable#defs}.
+   * @member {Reference[]} Variable#references
+   */
+  this.references = [];
+
+  /**
+   * List of defining occurrences of this variable (like in 'var ...'
+   * statements or as parameter), as custom objects.
+   * @member {Definition[]} Variable#defs
+   */
+  this.defs = [];
+
+  this.tainted = false;
+  /**
+   * Whether this is a stack variable.
+   * @member {boolean} Variable#stack
+   */
+  this.stack = true;
+  /**
+   * Reference to the enclosing Scope.
+   * @member {Scope} Variable#scope
+   */
+  this.scope = scope;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.escope.analyze" id="apidoc.element.escope.analyze">
+        function <span class="apidocSignatureSpan">escope.</span>analyze
+        <span class="apidocSignatureSpan">(tree, providedOptions)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function analyze(tree, providedOptions) {
+    var scopeManager, referencer, options;
+
+    options = updateDeeply(defaultOptions(), providedOptions);
+
+    scopeManager = new _scopeManager2.default(options);
+
+    referencer = new _referencer2.default(options, scopeManager);
+    referencer.visit(tree);
+
+    (0, _assert2.default)(scopeManager.__currentScope === null, 'currentScope should be null.');
+
+    return scopeManager;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+```js
+var escope = require('escope');
+var esprima = require('esprima');
+var estraverse = require('estraverse');
+
+var ast = esprima.parse(code);
+var scopeManager = escope.<span class="apidocCodeKeywordSpan">analyze</span>(ast);
+
+var currentScope = scopeManager.acquire(ast);   // global scope
+
+estraverse.traverse(ast, {
+enter: function(node, parent) {
+    // do stuff
+...</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.escope.definition" id="apidoc.module.escope.definition">module escope.definition</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.escope.definition.Definition" id="apidoc.element.escope.definition.Definition">
+        function <span class="apidocSignatureSpan">escope.definition.</span>Definition
+        <span class="apidocSignatureSpan">(type, name, node, parent, index, kind)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Definition(type, name, node, parent, index, kind) {
+  _classCallCheck(this, Definition);
+
+<span class="apidocCodeCommentSpan">  /**
+   * @member {String} Definition#type - type of the occurrence (e.g. "Parameter", "Variable", ...).
+   */
+</span>  this.type = type;
+  /**
+   * @member {esprima.Identifier} Definition#name - the identifier AST node of the occurrence.
+   */
+  this.name = name;
+  /**
+   * @member {esprima.Node} Definition#node - the enclosing node of the identifier.
+   */
+  this.node = node;
+  /**
+   * @member {esprima.Node?} Definition#parent - the enclosing statement node of the identifier.
+   */
+  this.parent = parent;
+  /**
+   * @member {Number?} Definition#index - the index in the declaration statement.
+   */
+  this.index = index;
+  /**
+   * @member {String?} Definition#kind - the kind of the declaration statement.
+   */
+  this.kind = kind;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+_createClass(Importer, [{
+    key: 'visitImport',
+    value: function visitImport(id, specifier) {
+        var _this2 = this;
+
+        this.referencer.visitPattern(id, function (pattern) {
+            _this2.referencer.currentScope().__define(pattern, new _definition.<span class="apidocCodeKeywordSpan">Definition</span>(_variable2.default.ImportBinding, pattern, specifier, _this2.declaration, null, null));
+        });
+    }
+}, {
+    key: 'ImportNamespaceSpecifier',
+    value: function ImportNamespaceSpecifier(node) {
+        var local = node.local || node.id;
+        if (local) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.escope.definition.ParameterDefinition" id="apidoc.element.escope.definition.ParameterDefinition">
+        function <span class="apidocSignatureSpan">escope.definition.</span>ParameterDefinition
+        <span class="apidocSignatureSpan">(name, node, index, rest)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function ParameterDefinition(name, node, index, rest) {
+  _classCallCheck(this, ParameterDefinition);
+
+<span class="apidocCodeCommentSpan">  /**
+   * Whether the parameter definition is a part of a rest parameter.
+   * @member {boolean} ParameterDefinition#rest
+   */
+</span>
+  var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ParameterDefinition).call(this, _variable2.default.Parameter
+, name, node, null, index, null));
+
+  _this.rest = rest;
+  return _this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+// Consider this function is in the MethodDefinition.
+this.scopeManager.__nestFunctionScope(node, this.isInnerMethodDefinition);
+
+// Process parameter declarations.
+for (i = 0, iz = node.params.length; i &lt; iz; ++i) {
+    this.visitPattern(node.params[i], { processRightHandNodes: true }, function (pattern, info) {
+        _this5.currentScope().__define(pattern, new _definition.<span class="apidocCodeKeywordSpan">ParameterDefinition</span>(pattern
+, node, i, info.rest));
+
+        _this5.referencingDefaultValue(pattern, info.assignments, null, true);
+    });
+}
+
+// if there's a rest argument, add that
+if (node.rest) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.escope.definition.default" id="apidoc.element.escope.definition.default">
+        function <span class="apidocSignatureSpan">escope.definition.</span>default
+        <span class="apidocSignatureSpan">(type, name, node, parent, index, kind)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Definition(type, name, node, parent, index, kind) {
+  _classCallCheck(this, Definition);
+
+<span class="apidocCodeCommentSpan">  /**
+   * @member {String} Definition#type - type of the occurrence (e.g. "Parameter", "Variable", ...).
+   */
+</span>  this.type = type;
+  /**
+   * @member {esprima.Identifier} Definition#name - the identifier AST node of the occurrence.
+   */
+  this.name = name;
+  /**
+   * @member {esprima.Node} Definition#node - the enclosing node of the identifier.
+   */
+  this.node = node;
+  /**
+   * @member {esprima.Node?} Definition#parent - the enclosing statement node of the identifier.
+   */
+  this.parent = parent;
+  /**
+   * @member {Number?} Definition#index - the index in the declaration statement.
+   */
+  this.index = index;
+  /**
+   * @member {String?} Definition#kind - the kind of the declaration statement.
+   */
+  this.kind = kind;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 (
+INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+
+THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
+
+
+function traverseIdentifierInPattern(options, rootPattern, referencer, callback) {
+    // Call the callback at left hand identifier nodes, and Collect right hand nodes.
+    var visitor = new _patternVisitor2.<span class="apidocCodeKeywordSpan">default</span>(options, rootPattern, callback);
+    visitor.visit(rootPattern);
+
+    // Process the right hand nodes recursively.
+    if (referencer != null) {
+        visitor.rightHandNodes.forEach(referencer.visit, referencer);
+    }
+}
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.escope.pattern_visitor" id="apidoc.module.escope.pattern_visitor">module escope.pattern_visitor</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.escope.pattern_visitor.default" id="apidoc.element.escope.pattern_visitor.default">
+        function <span class="apidocSignatureSpan">escope.pattern_visitor.</span>default
+        <span class="apidocSignatureSpan">(options, rootPattern, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function PatternVisitor(options, rootPattern, callback) {
+    _classCallCheck(this, PatternVisitor);
+
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(PatternVisitor).call(this, null, options));
+
+    _this.rootPattern = rootPattern;
+    _this.callback = callback;
+    _this.assignments = [];
+    _this.rightHandNodes = [];
+    _this.restElements = [];
+    return _this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 (
+INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+
+THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
+
+
+function traverseIdentifierInPattern(options, rootPattern, referencer, callback) {
+    // Call the callback at left hand identifier nodes, and Collect right hand nodes.
+    var visitor = new _patternVisitor2.<span class="apidocCodeKeywordSpan">default</span>(options, rootPattern, callback);
+    visitor.visit(rootPattern);
+
+    // Process the right hand nodes recursively.
+    if (referencer != null) {
+        visitor.rightHandNodes.forEach(referencer.visit, referencer);
+    }
+}
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.escope.reference" id="apidoc.module.escope.reference">module escope.reference</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.escope.reference.default" id="apidoc.element.escope.reference.default">
+        function <span class="apidocSignatureSpan">escope.reference.</span>default
+        <span class="apidocSignatureSpan">(ident, scope, flag, writeExpr, maybeImplicitGlobal, partial, init)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Reference(ident, scope, flag, writeExpr, maybeImplicitGlobal, partial, init) {
+  _classCallCheck(this, Reference);
+
+<span class="apidocCodeCommentSpan">  /**
+   * Identifier syntax node.
+   * @member {esprima#Identifier} Reference#identifier
+   */
+</span>  this.identifier = ident;
+  /**
+   * Reference to the enclosing Scope.
+   * @member {Scope} Reference#from
+   */
+  this.from = scope;
+  /**
+   * Whether the reference comes from a dynamic scope (such as 'eval',
+   * 'with', etc.), and may be trapped by dynamic scopes.
+   * @member {boolean} Reference#tainted
+   */
+  this.tainted = false;
+  /**
+   * The variable this reference is resolved with.
+   * @member {Variable} Reference#resolved
+   */
+  this.resolved = null;
+  /**
+   * The read-write mode of the reference. (Value is one of {@link
+   * Reference.READ}, {@link Reference.RW}, {@link Reference.WRITE}).
+   * @member {number} Reference#flag
+   * @private
+   */
+  this.flag = flag;
+  if (this.isWrite()) {
+    /**
+     * If reference is writeable, this is the tree being written to it.
+     * @member {esprima#Node} Reference#writeExpr
+     */
+    this.writeExpr = writeExpr;
+    /**
+     * Whether the Reference might refer to a partial value of writeExpr.
+     * @member {boolean} Reference#partial
+     */
+    this.partial = partial;
+    /**
+     * Whether the Reference is to write of initialization.
+     * @member {boolean} Reference#init
+     */
+    this.init = init;
+  }
+  this.__maybeImplicitGlobal = maybeImplicitGlobal;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 (
+INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+
+THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
+
+
+function traverseIdentifierInPattern(options, rootPattern, referencer, callback) {
+    // Call the callback at left hand identifier nodes, and Collect right hand nodes.
+    var visitor = new _patternVisitor2.<span class="apidocCodeKeywordSpan">default</span>(options, rootPattern, callback);
+    visitor.visit(rootPattern);
+
+    // Process the right hand nodes recursively.
+    if (referencer != null) {
+        visitor.rightHandNodes.forEach(referencer.visit, referencer);
+    }
+}
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.escope.referencer" id="apidoc.module.escope.referencer">module escope.referencer</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.escope.referencer.default" id="apidoc.element.escope.referencer.default">
+        function <span class="apidocSignatureSpan">escope.referencer.</span>default
+        <span class="apidocSignatureSpan">(options, scopeManager)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Referencer(options, scopeManager) {
+    _classCallCheck(this, Referencer);
+
+    var _this3 = _possibleConstructorReturn(this, Object.getPrototypeOf(Referencer).call(this, null, options));
+
+    _this3.options = options;
+    _this3.scopeManager = scopeManager;
+    _this3.parent = null;
+    _this3.isInnerMethodDefinition = false;
+    return _this3;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 (
+INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+
+THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
+
+
+function traverseIdentifierInPattern(options, rootPattern, referencer, callback) {
+    // Call the callback at left hand identifier nodes, and Collect right hand nodes.
+    var visitor = new _patternVisitor2.<span class="apidocCodeKeywordSpan">default</span>(options, rootPattern, callback);
+    visitor.visit(rootPattern);
+
+    // Process the right hand nodes recursively.
+    if (referencer != null) {
+        visitor.rightHandNodes.forEach(referencer.visit, referencer);
+    }
+}
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.escope.scope" id="apidoc.module.escope.scope">module escope.scope</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.escope.scope.BlockScope" id="apidoc.element.escope.scope.BlockScope">
+        function <span class="apidocSignatureSpan">escope.scope.</span>BlockScope
+        <span class="apidocSignatureSpan">(scopeManager, upperScope, block)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function BlockScope(scopeManager, upperScope, block) {
+    _classCallCheck(this, BlockScope);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(BlockScope).call(this, scopeManager, 'block', upperScope, block
+, false));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    key: '__nestGlobalScope',
+    value: function __nestGlobalScope(node) {
+        return this.__nestScope(new _scope.GlobalScope(this, node));
+    }
+}, {
+    key: '__nestBlockScope',
+    value: function __nestBlockScope(node, isMethodDefinition) {
+        return this.__nestScope(new _scope.<span class="apidocCodeKeywordSpan">BlockScope</span>(this, this.__currentScope, node
+));
+    }
+}, {
+    key: '__nestFunctionScope',
+    value: function __nestFunctionScope(node, isMethodDefinition) {
+        return this.__nestScope(new _scope.FunctionScope(this, this.__currentScope, node, isMethodDefinition));
+    }
+}, {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.escope.scope.CatchScope" id="apidoc.element.escope.scope.CatchScope">
+        function <span class="apidocSignatureSpan">escope.scope.</span>CatchScope
+        <span class="apidocSignatureSpan">(scopeManager, upperScope, block)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function CatchScope(scopeManager, upperScope, block) {
+    _classCallCheck(this, CatchScope);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(CatchScope).call(this, scopeManager, 'catch', upperScope, block
+, false));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    key: '__nestForScope',
+    value: function __nestForScope(node) {
+        return this.__nestScope(new _scope.ForScope(this, this.__currentScope, node));
+    }
+}, {
+    key: '__nestCatchScope',
+    value: function __nestCatchScope(node) {
+        return this.__nestScope(new _scope.<span class="apidocCodeKeywordSpan">CatchScope</span>(this, this.__currentScope, node
+));
+    }
+}, {
+    key: '__nestWithScope',
+    value: function __nestWithScope(node) {
+        return this.__nestScope(new _scope.WithScope(this, this.__currentScope, node));
+    }
+}, {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.escope.scope.ClassScope" id="apidoc.element.escope.scope.ClassScope">
+        function <span class="apidocSignatureSpan">escope.scope.</span>ClassScope
+        <span class="apidocSignatureSpan">(scopeManager, upperScope, block)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function ClassScope(scopeManager, upperScope, block) {
+    _classCallCheck(this, ClassScope);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(ClassScope).call(this, scopeManager, 'class', upperScope, block
+, false));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    key: '__nestWithScope',
+    value: function __nestWithScope(node) {
+        return this.__nestScope(new _scope.WithScope(this, this.__currentScope, node));
+    }
+}, {
+    key: '__nestClassScope',
+    value: function __nestClassScope(node) {
+        return this.__nestScope(new _scope.<span class="apidocCodeKeywordSpan">ClassScope</span>(this, this.__currentScope, node
+));
+    }
+}, {
+    key: '__nestSwitchScope',
+    value: function __nestSwitchScope(node) {
+        return this.__nestScope(new _scope.SwitchScope(this, this.__currentScope, node));
+    }
+}, {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.escope.scope.ForScope" id="apidoc.element.escope.scope.ForScope">
+        function <span class="apidocSignatureSpan">escope.scope.</span>ForScope
+        <span class="apidocSignatureSpan">(scopeManager, upperScope, block)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function ForScope(scopeManager, upperScope, block) {
+    _classCallCheck(this, ForScope);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(ForScope).call(this, scopeManager, 'for', upperScope, block, false
+));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    key: '__nestFunctionScope',
+    value: function __nestFunctionScope(node, isMethodDefinition) {
+        return this.__nestScope(new _scope.FunctionScope(this, this.__currentScope, node, isMethodDefinition));
+    }
+}, {
+    key: '__nestForScope',
+    value: function __nestForScope(node) {
+        return this.__nestScope(new _scope.<span class="apidocCodeKeywordSpan">ForScope</span>(this, this.__currentScope, node));
+    }
+}, {
+    key: '__nestCatchScope',
+    value: function __nestCatchScope(node) {
+        return this.__nestScope(new _scope.CatchScope(this, this.__currentScope, node));
+    }
+}, {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.escope.scope.FunctionExpressionNameScope" id="apidoc.element.escope.scope.FunctionExpressionNameScope">
+        function <span class="apidocSignatureSpan">escope.scope.</span>FunctionExpressionNameScope
+        <span class="apidocSignatureSpan">(scopeManager, upperScope, block)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function FunctionExpressionNameScope(scopeManager, upperScope, block) {
+    _classCallCheck(this, FunctionExpressionNameScope);
+
+    var _this3 = _possibleConstructorReturn(this, Object.getPrototypeOf(FunctionExpressionNameScope).call(this, scopeManager, 'function
+-expression-name', upperScope, block, false));
+
+    _this3.__define(block.id, new _definition2.default(_variable2.default.FunctionName, block.id, block, null, null, null));
+    _this3.functionExpressionScope = true;
+    return _this3;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    key: '__nestTDZScope',
+    value: function __nestTDZScope(node) {
+        return this.__nestScope(new _scope.TDZScope(this, this.__currentScope, node));
+    }
+}, {
+    key: '__nestFunctionExpressionNameScope',
+    value: function __nestFunctionExpressionNameScope(node) {
+        return this.__nestScope(new _scope.<span class="apidocCodeKeywordSpan">FunctionExpressionNameScope</span>(this, this.__currentScope
+, node));
+    }
+}, {
+    key: '__isES6',
+    value: function __isES6() {
+        return this.__options.ecmaVersion &gt;= 6;
+    }
+}]);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.escope.scope.FunctionScope" id="apidoc.element.escope.scope.FunctionScope">
+        function <span class="apidocSignatureSpan">escope.scope.</span>FunctionScope
+        <span class="apidocSignatureSpan">(scopeManager, upperScope, block, isMethodDefinition)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function FunctionScope(scopeManager, upperScope, block, isMethodDefinition) {
+    _classCallCheck(this, FunctionScope);
+
+    // section 9.2.13, FunctionDeclarationInstantiation.
+    // NOTE Arrow functions never have an arguments objects.
+
+    var _this9 = _possibleConstructorReturn(this, Object.getPrototypeOf(FunctionScope).call(this, scopeManager, 'function', upperScope
+, block, isMethodDefinition));
+
+    if (_this9.block.type !== _estraverse.Syntax.ArrowFunctionExpression) {
+        _this9.__defineArguments();
+    }
+    return _this9;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    key: '__nestBlockScope',
+    value: function __nestBlockScope(node, isMethodDefinition) {
+        return this.__nestScope(new _scope.BlockScope(this, this.__currentScope, node));
+    }
+}, {
+    key: '__nestFunctionScope',
+    value: function __nestFunctionScope(node, isMethodDefinition) {
+        return this.__nestScope(new _scope.<span class="apidocCodeKeywordSpan">FunctionScope</span>(this, this.__currentScope, node
+, isMethodDefinition));
+    }
+}, {
+    key: '__nestForScope',
+    value: function __nestForScope(node) {
+        return this.__nestScope(new _scope.ForScope(this, this.__currentScope, node));
+    }
+}, {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.escope.scope.GlobalScope" id="apidoc.element.escope.scope.GlobalScope">
+        function <span class="apidocSignatureSpan">escope.scope.</span>GlobalScope
+        <span class="apidocSignatureSpan">(scopeManager, block)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function GlobalScope(scopeManager, block) {
+    _classCallCheck(this, GlobalScope);
+
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(GlobalScope).call(this, scopeManager, 'global', null, block
+, false));
+
+    _this.implicit = {
+        set: new _es6Map2.default(),
+        variables: [],
+<span class="apidocCodeCommentSpan">        /**
+        * List of {@link Reference}s that are left to be resolved (i.e. which
+        * need to be linked to the variable they refer to).
+        * @member {Reference[]} Scope#implicit#left
+        */
+</span>        left: []
+    };
+    return _this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+        }
+        this.__currentScope = scope;
+        return scope;
+    }
+}, {
+    key: '__nestGlobalScope',
+    value: function __nestGlobalScope(node) {
+        return this.__nestScope(new _scope.<span class="apidocCodeKeywordSpan">GlobalScope</span>(this, node));
+    }
+}, {
+    key: '__nestBlockScope',
+    value: function __nestBlockScope(node, isMethodDefinition) {
+        return this.__nestScope(new _scope.BlockScope(this, this.__currentScope, node));
+    }
+}, {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.escope.scope.ModuleScope" id="apidoc.element.escope.scope.ModuleScope">
+        function <span class="apidocSignatureSpan">escope.scope.</span>ModuleScope
+        <span class="apidocSignatureSpan">(scopeManager, upperScope, block)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function ModuleScope(scopeManager, upperScope, block) {
+    _classCallCheck(this, ModuleScope);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(ModuleScope).call(this, scopeManager, 'module', upperScope, block
+, false));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    key: '__nestSwitchScope',
+    value: function __nestSwitchScope(node) {
+        return this.__nestScope(new _scope.SwitchScope(this, this.__currentScope, node));
+    }
+}, {
+    key: '__nestModuleScope',
+    value: function __nestModuleScope(node) {
+        return this.__nestScope(new _scope.<span class="apidocCodeKeywordSpan">ModuleScope</span>(this, this.__currentScope, node
+));
+    }
+}, {
+    key: '__nestTDZScope',
+    value: function __nestTDZScope(node) {
+        return this.__nestScope(new _scope.TDZScope(this, this.__currentScope, node));
+    }
+}, {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.escope.scope.SwitchScope" id="apidoc.element.escope.scope.SwitchScope">
+        function <span class="apidocSignatureSpan">escope.scope.</span>SwitchScope
+        <span class="apidocSignatureSpan">(scopeManager, upperScope, block)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function SwitchScope(scopeManager, upperScope, block) {
+    _classCallCheck(this, SwitchScope);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(SwitchScope).call(this, scopeManager, 'switch', upperScope, block
+, false));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    key: '__nestClassScope',
+    value: function __nestClassScope(node) {
+        return this.__nestScope(new _scope.ClassScope(this, this.__currentScope, node));
+    }
+}, {
+    key: '__nestSwitchScope',
+    value: function __nestSwitchScope(node) {
+        return this.__nestScope(new _scope.<span class="apidocCodeKeywordSpan">SwitchScope</span>(this, this.__currentScope, node
+));
+    }
+}, {
+    key: '__nestModuleScope',
+    value: function __nestModuleScope(node) {
+        return this.__nestScope(new _scope.ModuleScope(this, this.__currentScope, node));
+    }
+}, {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.escope.scope.TDZScope" id="apidoc.element.escope.scope.TDZScope">
+        function <span class="apidocSignatureSpan">escope.scope.</span>TDZScope
+        <span class="apidocSignatureSpan">(scopeManager, upperScope, block)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function TDZScope(scopeManager, upperScope, block) {
+    _classCallCheck(this, TDZScope);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(TDZScope).call(this, scopeManager, 'TDZ', upperScope, block, false
+));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    key: '__nestModuleScope',
+    value: function __nestModuleScope(node) {
+        return this.__nestScope(new _scope.ModuleScope(this, this.__currentScope, node));
+    }
+}, {
+    key: '__nestTDZScope',
+    value: function __nestTDZScope(node) {
+        return this.__nestScope(new _scope.<span class="apidocCodeKeywordSpan">TDZScope</span>(this, this.__currentScope, node));
+    }
+}, {
+    key: '__nestFunctionExpressionNameScope',
+    value: function __nestFunctionExpressionNameScope(node) {
+        return this.__nestScope(new _scope.FunctionExpressionNameScope(this, this.__currentScope, node));
+    }
+}, {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.escope.scope.WithScope" id="apidoc.element.escope.scope.WithScope">
+        function <span class="apidocSignatureSpan">escope.scope.</span>WithScope
+        <span class="apidocSignatureSpan">(scopeManager, upperScope, block)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function WithScope(scopeManager, upperScope, block) {
+    _classCallCheck(this, WithScope);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(WithScope).call(this, scopeManager, 'with', upperScope, block,
+false));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    key: '__nestCatchScope',
+    value: function __nestCatchScope(node) {
+        return this.__nestScope(new _scope.CatchScope(this, this.__currentScope, node));
+    }
+}, {
+    key: '__nestWithScope',
+    value: function __nestWithScope(node) {
+        return this.__nestScope(new _scope.<span class="apidocCodeKeywordSpan">WithScope</span>(this, this.__currentScope, node));
+    }
+}, {
+    key: '__nestClassScope',
+    value: function __nestClassScope(node) {
+        return this.__nestScope(new _scope.ClassScope(this, this.__currentScope, node));
+    }
+}, {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.escope.scope.default" id="apidoc.element.escope.scope.default">
+        function <span class="apidocSignatureSpan">escope.scope.</span>default
+        <span class="apidocSignatureSpan">(scopeManager, type, upperScope, block, isMethodDefinition)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Scope(scopeManager, type, upperScope, block, isMethodDefinition) {
+    _classCallCheck(this, Scope);
+
+<span class="apidocCodeCommentSpan">    /**
+     * One of 'TDZ', 'module', 'block', 'switch', 'function', 'catch', 'with', 'function', 'class', 'global'.
+     * @member {String} Scope#type
+     */
+</span>    this.type = type;
+    /**
+    * The scoped {@link Variable}s of this scope, as &lt;code&gt;{ Variable.name
+    * : Variable }&lt;/code&gt;.
+    * @member {Map} Scope#set
+    */
+    this.set = new _es6Map2.default();
+    /**
+     * The tainted variables of this scope, as &lt;code&gt;{ Variable.name :
+     * boolean }&lt;/code&gt;.
+     * @member {Map} Scope#taints */
+    this.taints = new _es6Map2.default();
+    /**
+     * Generally, through the lexical scoping of JS you can always know
+     * which variable an identifier in the source code refers to. There are
+     * a few exceptions to this rule. With 'global' and 'with' scopes you
+     * can only decide at runtime which variable a reference refers to.
+     * Moreover, if 'eval()' is used in a scope, it might introduce new
+     * bindings in this or its parent scopes.
+     * All those scopes are considered 'dynamic'.
+     * @member {boolean} Scope#dynamic
+     */
+    this.dynamic = this.type === 'global' || this.type === 'with';
+    /**
+     * A reference to the scope-defining syntax node.
+     * @member {esprima.Node} Scope#block
+     */
+    this.block = block;
+    /**
+    * The {@link Reference|references} that are not resolved with this scope.
+    * @member {Reference[]} Scope#through
+    */
+    this.through = [];
+    /**
+    * The scoped {@link Variable}s of this scope. In the case of a
+    * 'function' scope this includes the automatic argument &lt;em&gt;arguments&lt;/em&gt; as
+    * its first element, as well as all further formal arguments.
+    * @member {Variable[]} Scope#variables
+    */
+    this.variables = [];
+    /**
+    * Any variable {@link Reference|reference} found in this scope. This
+    * includes occurrences of local variables as well as variables from
+    * parent scopes (including the global scope). For local variables
+    * this also includes defining occurrences (like in a 'var' statement).
+    * In a 'function' scope this does not include the occurrences of the
+    * formal parameter in the parameter list.
+    * @member {Reference[]} Scope#references
+    */
+    this.references = [];
+
+    /**
+    * For 'global' and 'function' scopes, this is a self-reference. For
+    * other scope types this is the &lt;em&gt;variableScope&lt;/em&gt; value of the
+    * parent scope.
+    * @member {Scope} Scope#variableScope
+    */
+    this.variableScope = this.type === 'global' || this.type === 'function' || this.type === 'module' ? this : upperScope.variableScope
+;
+    /**
+    * Whether this scope is created by a FunctionExpression.
+    * @member {boolean} Scope#functionExpressionScope
+    */
+    this.functionExpressionScope = false;
+    /**
+    * Whether this is a scope that contains an 'eval()' invocation.
+    * @member {boolean} Scope#directCallToEvalScope
+    */
+    this.directCallToEvalScope = false;
+    /**
+    * @member {boolean} Scope#thisFound
+    */
+    this.thisFound = false;
+
+    this.__left = [];
+
+    /**
+    * Reference to the parent {@link Scope|scope}.
+    * @member {Scope} Scope#upper
+    */
+    this.upper = upperScope;
+    /**
+    * Whether 'use strict' is in effect in this scope.
+    * @member {boolean} Scope#isStrict
+    */
+    this.isStrict = isStrictScope(this, block, isMethodDefinition, scopeManager.__useDirective());
+
+    /**
+    * List of nested {@link Scope}s.
+    * @member {Scope[]} Scope#childScopes
+    */
+    this.childScopes = [];
+    if (this.upper) {
+        this.upper.childScopes.push(this);
+    }
+
+    this.__declaredVariables = scopeManager.__declaredVariables;
+
+    registerScope(scopeManager, this);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 (
+INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+
+THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
+
+
+function traverseIdentifierInPattern(options, rootPattern, referencer, callback) {
+    // Call the callback at left hand identifier nodes, and Collect right hand nodes.
+    var visitor = new _patternVisitor2.<span class="apidocCodeKeywordSpan">default</span>(options, rootPattern, callback);
+    visitor.visit(rootPattern);
+
+    // Process the right hand nodes recursively.
+    if (referencer != null) {
+        visitor.rightHandNodes.forEach(referencer.visit, referencer);
+    }
+}
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.escope.scope_manager" id="apidoc.module.escope.scope_manager">module escope.scope_manager</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.escope.scope_manager.default" id="apidoc.element.escope.scope_manager.default">
+        function <span class="apidocSignatureSpan">escope.scope_manager.</span>default
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function ScopeManager(options) {
+    _classCallCheck(this, ScopeManager);
+
+    this.scopes = [];
+    this.globalScope = null;
+    this.__nodeToScope = new _es6WeakMap2.default();
+    this.__currentScope = null;
+    this.__options = options;
+    this.__declaredVariables = new _es6WeakMap2.default();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 (
+INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+
+THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
+
+
+function traverseIdentifierInPattern(options, rootPattern, referencer, callback) {
+    // Call the callback at left hand identifier nodes, and Collect right hand nodes.
+    var visitor = new _patternVisitor2.<span class="apidocCodeKeywordSpan">default</span>(options, rootPattern, callback);
+    visitor.visit(rootPattern);
+
+    // Process the right hand nodes recursively.
+    if (referencer != null) {
+        visitor.rightHandNodes.forEach(referencer.visit, referencer);
+    }
+}
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.escope.variable" id="apidoc.module.escope.variable">module escope.variable</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.escope.variable.default" id="apidoc.element.escope.variable.default">
+        function <span class="apidocSignatureSpan">escope.variable.</span>default
+        <span class="apidocSignatureSpan">(name, scope)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Variable(name, scope) {
+  _classCallCheck(this, Variable);
+
+<span class="apidocCodeCommentSpan">  /**
+   * The variable name, as given in the source code.
+   * @member {String} Variable#name
+   */
+</span>  this.name = name;
+  /**
+   * List of defining occurrences of this variable (like in 'var ...'
+   * statements or as parameter), as AST nodes.
+   * @member {esprima.Identifier[]} Variable#identifiers
+   */
+  this.identifiers = [];
+  /**
+   * List of {@link Reference|references} of this variable (excluding parameter entries)
+   * in its defining scope and all nested scopes. For defining
+   * occurrences only see {@link Variable#defs}.
+   * @member {Reference[]} Variable#references
+   */
+  this.references = [];
+
+  /**
+   * List of defining occurrences of this variable (like in 'var ...'
+   * statements or as parameter), as custom objects.
+   * @member {Definition[]} Variable#defs
+   */
+  this.defs = [];
+
+  this.tainted = false;
+  /**
+   * Whether this is a stack variable.
+   * @member {boolean} Variable#stack
+   */
+  this.stack = true;
+  /**
+   * Reference to the enclosing Scope.
+   * @member {Scope} Variable#scope
+   */
+  this.scope = scope;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 (
+INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+
+THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               */
+
+
+function traverseIdentifierInPattern(options, rootPattern, referencer, callback) {
+    // Call the callback at left hand identifier nodes, and Collect right hand nodes.
+    var visitor = new _patternVisitor2.<span class="apidocCodeKeywordSpan">default</span>(options, rootPattern, callback);
+    visitor.visit(rootPattern);
+
+    // Process the right hand nodes recursively.
+    if (referencer != null) {
+        visitor.rightHandNodes.forEach(referencer.visit, referencer);
+    }
+}
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
